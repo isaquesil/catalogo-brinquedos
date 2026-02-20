@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html lang="pt-pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZACK Diversões - Alegria em Todos os Eventos</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --azul: #2563eb;
+
+            --vermelho: #f43f5e;
+
+            --amarelo: #fbbf24;
+
+            --verde: #22c55e;
+
+            --bg-creme: #fdfaf3; 
+
+        }
+
+
+
+        /* Fundo Animado com Gradiente em Movimento */
+
+        body {
+
+            font-family: 'Quicksand', sans-serif;
+
+            background: linear-gradient(-45deg, var(--bg-creme), #fff9f0, #fff4f4, #f0f9ff);
+
+            background-size: 400% 400%;
+
+            animation: gradientBG 15s ease infinite;
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        @keyframes gradientBG {
+
+            0% { background-position: 0% 50%; }
+
+            50% { background-position: 100% 50%; }
+
+            100% { background-position: 0% 50%; }
+
+        }
+
+
+
+        h1, h2, h3, .brand-font {
+
+            font-family: 'Fredoka One', cursive;
+
+            letter-spacing: 1px;
+
+        }
+
+
+
+        /* Confetes/Pontinhos de fundo com movimento suave */
+
+        .confetti-bg {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            pointer-events: none;
+
+            z-index: 0;
+
+        }
+
+
+
+        .confetti-piece {
+
+            position: absolute;
+
+            animation: floatConfetti 12s linear infinite;
+
+            opacity: 0.4;
+
+            border-radius: 50%;
+
+        }
+
+
+
+        @keyframes floatConfetti {
+
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+
+            10% { opacity: 0.4; }
+
+            90% { opacity: 0.4; }
+
+            100% { transform: translateY(100vh) translateX(20px) rotate(360deg); opacity: 0; }
+
+        }
+
+
+
+        /* Blobs flutuantes */
+
+        .blob {
+
+            position: absolute;
+
+            filter: blur(60px);
+
+            z-index: 0;
+
+            opacity: 0.4;
+
+            animation: moveBlob 15s infinite alternate ease-in-out;
+
+        }
+
+
+
+        @keyframes moveBlob {
+
+            0% { transform: translate(0, 0) scale(1); }
+
+            100% { transform: translate(50px, 80px) scale(1.2); }
+
+        }
+
+
+
+        .floating {
+
+            animation: float 4s ease-in-out infinite;
+
+        }
+
+
+
+        @keyframes float {
+
+            0% { transform: translateY(0px); }
+
+            50% { transform: translateY(-15px); }
+
+            100% { transform: translateY(0px); }
+
+        }
+
+
+
+        .toy-card {
+
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            border-width: 6px;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            backdrop-filter: blur(8px);
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+
+        .toy-card:hover {
+
+            transform: scale(1.05) rotate(-1deg);
+
+            box-shadow: 0 30px 60px -12px rgba(37, 99, 235, 0.2);
+
+        }
+
+
+
+        /* --- ANIMAÇÃO DE BOTÃO PREMIUM 3D --- */
+
+        .btn-action {
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            cursor: pointer;
+
+            transform: translateY(0);
+
+        }
+
+
+
+        /* Ao colocar o cursor (Hover): Ele "saca" para fora */
+
+        .btn-action:hover {
+
+            transform: translateY(-6px); /* Sobe */
+
+            filter: brightness(110%); /* Fica mais claro conforme pedido */
+
+        }
+
+
+
+        /* Sombra dinâmica que cresce quando o botão sobe */
+
+        .btn-green { box-shadow: 0 8px 0 0 #166534; }
+
+        .btn-green:hover { box-shadow: 0 14px 0 0 #166534; }
+
+        
+
+        .btn-blue { box-shadow: 0 8px 0 0 #1e3a8a; }
+
+        .btn-blue:hover { box-shadow: 0 14px 0 0 #1e3a8a; }
+
+
+
+        .btn-red { box-shadow: 0 8px 0 0 #9f1239; }
+
+        .btn-red:hover { box-shadow: 0 14px 0 0 #9f1239; }
+
+
+
+        .btn-yellow { box-shadow: 0 8px 0 0 #a16207; }
+
+        .btn-yellow:hover { box-shadow: 0 14px 0 0 #a16207; }
+
+
+
+        .btn-insta { box-shadow: 0 8px 0 0 #701a75; }
+
+        .btn-insta:hover { box-shadow: 0 14px 0 0 #701a75; }
+
+
+
+        /* Ao clicar (Active): Ele afunda e a sombra some */
+
+        .btn-action:active {
+
+            transform: translateY(4px); /* Desce */
+
+            box-shadow: 0 2px 0 0 transparent !important;
+
+            transition: all 0.1s;
+
+        }
+
+
+
+        /* Efeito de Brilho (Shine) que passa pelo botão */
+
+        .btn-action::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: -50%;
+
+            left: -100%;
+
+            width: 40%;
+
+            height: 200%;
+
+            background: rgba(255, 255, 255, 0.4);
+
+            transform: rotate(30deg);
+
+            animation: shineEffect 3s infinite;
+
+        }
+
+
+
+        @keyframes shineEffect {
+
+            0% { left: -100%; }
+
+            20% { left: 150%; }
+
+            100% { left: 150%; }
+
+        }
+
+
+
+        .img-container {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 320px; /* Aumentado para melhor visibilidade */
+
+            overflow: hidden;
+
+            background: #f3f4f6;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+
+        .wave-bottom {
+
+            fill: #2563eb;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <!-- Fundo Decorativo -->
+
+    <div class="confetti-bg" id="confetti-container"></div>
+
+    <div class="blob w-96 h-96 bg-blue-100 rounded-full top-0 -left-20"></div>
+
+    <div class="blob w-96 h-96 bg-pink-100 rounded-full bottom-0 -right-20" style="animation-delay: -3s;"></div>
+
+
+
+    <!-- CAPA -->
+
+    <section class="min-h-screen flex flex-col items-center justify-center py-16 px-6 relative z-10 text-center">
+
+        <div class="max-w-4xl w-full space-y-12">
+
+            
+
+            <!-- Logo -->
+
+            <div class="transform hover:scale-110 transition-transform duration-500 cursor-pointer">
+
+                <h1 class="text-8xl md:text-9xl tracking-tighter inline-block drop-shadow-2xl">
+
+                    <span class="text-blue-600">Z</span><span class="text-yellow-400">A</span><span class="text-red-500">C</span><span class="text-green-500">K</span>
+
+                </h1>
+
+                <!-- Correção do tamanho e arredondamento da etiqueta azul -->
+
+                <div class="block mt-[-10px] md:mt-[-20px]">
+
+                    <div class="bg-blue-600 text-white py-3 px-12 rounded-full inline-flex items-center justify-center shadow-xl transform -rotate-2 border-4 border-white min-w-[240px]">
+
+                        <p class="brand-font text-2xl md:text-4xl leading-none">Diversões</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Mascote Oficial -->
+
+            <div class="relative inline-block floating">
+
+                <div class="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-tr from-yellow-300 via-orange-400 to-red-400 rounded-full flex items-center justify-center border-[10px] border-white shadow-2xl mx-auto overflow-hidden">
+
+                    <img src="img/mascot.png" alt="Mascote Zack" class="w-full h-full object-cover">
+
+                </div>
+
+                <div class="absolute -top-4 -right-8 bg-red-500 text-white px-8 py-3 rounded-full shadow-2xl font-bold rotate-12 border-4 border-white text-xl">
+
+                    ALEGRIA TOTAL! 🎈
+
+                </div>
+
+                <div class="absolute -bottom-4 -left-8 bg-green-500 text-white px-6 py-2 rounded-full shadow-xl font-bold -rotate-12 border-4 border-white">
+
+                    ⭐ TODOS OS EVENTOS
+
+                </div>
+
+            </div>
+
+
+
+            <div class="space-y-6">
+
+                <h2 class="text-5xl md:text-7xl text-blue-900 font-bold leading-none">
+
+                    Diversão <span class="text-red-500 italic underline decoration-yellow-400">Garantida!</span>
+
+                </h2>
+
+                <p class="text-blue-900 font-bold max-w-2xl mx-auto text-xl bg-white/70 backdrop-blur-md p-6 rounded-[2.5rem] border-2 border-white shadow-lg">
+
+                    Levamos a melhor estrutura de lazer para Imperatriz e região. Atendemos aniversários, casamentos, eventos corporativos e escolas!
+
+                </p>
+
+            </div>
+
+
+
+            <!-- Botão Ver Catálogo com "Sacada" -->
+
+            <a href="#catalogo" class="btn-action btn-green inline-block bg-green-500 text-white font-bold py-6 px-16 rounded-full text-3xl">
+
+                Ver Catálogo 🎡
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SECÇÃO DE PRODUTOS -->
+
+    <section id="catalogo" class="py-24 px-6 relative">
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="text-center mb-20">
+
+                <h2 class="text-6xl md:text-7xl text-blue-900 mb-4">Brinquedos Incríveis</h2>
+
+                <p class="text-2xl text-blue-800 font-bold italic">Transforme o seu evento num momento épico!</p>
+
+            </div>
+
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <!-- Futebol de Sabão -->
+
+                <div class="toy-card rounded-[3rem] shadow-2xl overflow-hidden border-blue-500">
+
+                    <div class="img-container">
+
+                        <img src="img/futebol.png" alt="Futebol de Sabão" class="w-full h-full object-cover">
+
+                    </div>
+
+                    <div class="p-10 text-center flex-grow flex flex-col justify-between">
+
+                        <div>
+
+                            <h3 class="text-3xl text-blue-900 mb-4 font-black">Futebol de Sabão</h3>
+
+                            <p class="text-gray-500 font-bold mb-6 italic">Para crianças e adultos se divertirem!</p>
+
+                            <ul class="text-gray-700 space-y-3 mb-10 text-left border-t-2 border-blue-50 pt-6">
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Gigante: 8x4 metros</li>
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Sabão neutro e seguro</li>
+
+                            </ul>
+
+                        </div>
+
+                        <button onclick="falarZap('Futebol de Sabão')" class="btn-action btn-blue w-full bg-blue-600 text-white font-black py-5 rounded-3xl text-xl uppercase">Reservar Agora!</button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Tobogã Premium -->
+
+                <div class="toy-card rounded-[3rem] shadow-2xl overflow-hidden border-red-500">
+
+                    <div class="img-container">
+
+                        <img src="img/tobogã.png" alt="Tobogã Premium" class="w-full h-full object-cover">
+
+                    </div>
+
+                    <div class="p-10 text-center flex-grow flex flex-col justify-between">
+
+                        <div>
+
+                            <h3 class="text-3xl text-red-600 mb-4 font-black">Tobogã Premium</h3>
+
+                            <p class="text-gray-500 font-bold mb-6 italic">A atração principal que todos amam!</p>
+
+                            <ul class="text-gray-700 space-y-3 mb-10 text-left border-t-2 border-red-50 pt-6">
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Altura impressionante</li>
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Estrutura reforçada</li>
+
+                            </ul>
+
+                        </div>
+
+                        <button onclick="falarZap('Tobogã Premium')" class="btn-action btn-red w-full bg-red-500 text-white font-black py-5 rounded-3xl text-xl uppercase">Eu Quero Este!</button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Pula-Pula -->
+
+                <div class="toy-card rounded-[3rem] shadow-2xl overflow-hidden border-yellow-400">
+
+                    <div class="img-container">
+
+                        <img src="img/pulapula.png" alt="Pula-Pula Mágico" class="w-full h-full object-cover">
+
+                    </div>
+
+                    <div class="p-10 text-center flex-grow flex flex-col justify-between">
+
+                        <div>
+
+                            <h3 class="text-3xl text-yellow-600 mb-4 font-black">Pula-Pula Mágico</h3>
+
+                            <p class="text-gray-500 font-bold mb-6 italic">O clássico que nunca sai de moda!</p>
+
+                            <ul class="text-gray-700 space-y-4 mb-10 text-left border-t-2 border-yellow-50 pt-8">
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Rede de proteção alta</li>
+
+                                <li class="flex items-center text-lg"><span class="text-green-500 mr-2 font-bold">✔</span> Lona de salto premium</li>
+
+                            </ul>
+
+                        </div>
+
+                        <button onclick="falarZap('Pula-Pula')" class="btn-action btn-yellow w-full bg-yellow-400 text-white font-black py-5 rounded-3xl text-xl uppercase">Reservar Data!</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- RODAPÉ -->
+
+    <section class="relative pt-48 pb-24 px-6">
+
+        <svg class="absolute top-0 left-0 w-full h-48" viewBox="0 0 1440 320" preserveAspectRatio="none">
+
+            <path class="wave-bottom" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,213.3C960,203,1056,181,1152,154.7C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+
+        </svg>
+
+
+
+        <div class="max-w-5xl mx-auto bg-white rounded-[4rem] shadow-2xl p-12 md:p-20 relative z-10 text-center border-[6px] border-blue-500">
+
+            <h2 class="text-5xl md:text-7xl text-blue-900 mb-8 font-black">Vamos fazer a festa?</h2>
+
+            
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                <!-- Botão WhatsApp 3D -->
+
+                <button onclick="falarZap('Pedido Geral')" class="btn-action btn-green flex bg-green-500 text-white font-black py-8 rounded-[2.5rem] shadow-[0_10px_0_0_#166534] items-center justify-center space-x-4 text-3xl">
+
+                    <span class="text-5xl">📱</span>
+
+                    <span>WHATSAPP</span>
+
+                </button>
+
+                
+
+                <!-- Botão Instagram 3D -->
+
+                <a href="https://instagram.com/zackdiversoes" target="_blank" class="btn-action btn-insta flex bg-gradient-to-br from-purple-600 via-pink-500 to-orange-500 shadow-[0_10px_0_0_#701a75] text-white font-black py-8 rounded-[2.5rem] items-center justify-center space-x-4 text-3xl no-underline">
+
+                    <span class="text-5xl">📸</span>
+
+                    <span>INSTAGRAM</span>
+
+                </a>
+
+            </div>
+
+
+
+            <div class="mt-20 flex flex-wrap justify-center gap-6 font-black text-lg">
+
+                <span class="bg-blue-600 text-white px-8 py-3 rounded-full shadow-lg border-2 border-white">📍 IMPERATRIZ - MA</span>
+
+                <span class="bg-red-500 text-white px-8 py-3 rounded-full shadow-lg border-2 border-white">🤸 TODOS OS EVENTOS</span>
+
+                <span class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full shadow-lg border-2 border-white">✨ QUALQUER COMEMORAÇÃO</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <script>
+
+        const container = document.getElementById('confetti-container');
+
+        const colors = ['#2563eb', '#f43f5e', '#fbbf24', '#22c55e', '#a855f7', '#ffedd5'];
+
+        
+
+        function createConfettiPiece() {
+
+            const piece = document.createElement('div');
+
+            piece.className = 'confetti-piece';
+
+            const size = Math.random() * 12 + 6;
+
+            piece.style.width = size + 'px';
+
+            piece.style.height = size + 'px';
+
+            piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+            piece.style.left = Math.random() * 100 + 'vw';
+
+            piece.style.top = '-20px';
+
+            const duration = Math.random() * 8 + 6;
+
+            piece.style.animationDuration = duration + 's';
+
+            piece.style.animationDelay = Math.random() * 5 + 's';
+
+            container.appendChild(piece);
+
+            setTimeout(() => { piece.remove(); }, (duration + 5) * 1000);
+
+        }
+
+
+
+        for(let i = 0; i < 40; i++) { createConfettiPiece(); }
+
+        setInterval(createConfettiPiece, 400);
+
+
+
+        function falarZap(assunto) {
+
+            const numero = "5599985019213";
+
+            const mensagem = encodeURIComponent(`Olá ZACK Diversões! ✨ Gostaria de um orçamento para: ${assunto}! 🎈`);
+
+            window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+
+        }
+
+    </script>
+
+</body>
+
+</html>
